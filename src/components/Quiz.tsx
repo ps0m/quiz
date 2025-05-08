@@ -13,6 +13,7 @@ const Quiz: React.FC = () => {
     resetQuiz,
     startQuiz,
     showTryAgain,
+      showTooltip
   } = useQuiz();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -65,6 +66,13 @@ const Quiz: React.FC = () => {
       <div className="speech-bubble">
         <h2>{currentQuestion.question}</h2>
       </div>
+
+          {showTooltip && (
+              <div className="tooltip">
+                  <p>Мова адказу: <strong>{currentQuestion.answerLanguage}</strong></p>
+                  <p>Колькасць слоў: <strong>{currentQuestion.wordCount}</strong></p>
+              </div>
+          )}
 
       <form onSubmit={handleSubmit} className="answer-form">
         <input

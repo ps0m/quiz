@@ -7,5 +7,6 @@ export interface Question {
   id: number;
   question: string;
   answer: string;
-  hint?: string;
+    answerLanguage: string;
+    wordCount: number;
 }
