@@ -75,13 +75,6 @@ const Quiz: React.FC = () => {
                   <h2>{currentQuestion.question}</h2>
               </div>
 
-              {showTooltip && (
-                  <div className="tooltip">
-                      <p>Мова адказу: {currentQuestion.answerLanguage}</p>
-                      <p>Колькасць слоў: {currentQuestion.wordCount}</p>
-                  </div>
-              )}
-
               <form onSubmit={handleSubmit} className="answer-form">
                   <input
                       type="text"
@@ -92,6 +85,13 @@ const Quiz: React.FC = () => {
                       disabled={isCorrect !== null}
                   />
               </form>
+
+              {showTooltip && (
+                  <div className="tooltip">
+                      <p>Мова адказу: {currentQuestion.answerLanguage}</p>
+                      <p>Колькасць слоў: {currentQuestion.wordCount}</p>
+                  </div>
+              )}
 
               {showTryAgain && (
                   <div className="try-again">
