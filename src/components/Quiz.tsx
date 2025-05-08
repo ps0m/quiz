@@ -1,15 +1,13 @@
-import { useState, FormEvent, ChangeEvent } from 'react';
+import React, { useState, FormEvent, ChangeEvent } from 'react';
 import { useQuiz } from '../hooks/useQuiz';
 import './Quiz.css';
 
-const Quiz = () => {
+const Quiz: React.FC = () => {
   const {
     gameState,
     currentQuestion,
     userAnswer,
-    setUserAnswer,
-    showHint,
-    showQuestionHint,
+      setUserAnswer,
     isCorrect,
     checkAnswer,
     nextQuestion,
@@ -18,7 +16,8 @@ const Quiz = () => {
     currentQuestionNumber,
     score,
     startQuiz,
-    resetQuiz
+      resetQuiz,
+      showTryAgain
   } = useQuiz();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -30,27 +29,27 @@ const Quiz = () => {
     setUserAnswer(e.target.value);
   };
 
-  // Стартовый экран
+    // Пачатковы экран
   if (gameState === 'start') {
     return (
       <div className="quiz-container">
         <div className="speech-bubble">
-          <h1 className="quiz-title">Quiz</h1>
+                <h1 className="quiz-title">Віктарына</h1>
         </div>
         <button className="start-btn" onClick={startQuiz}>
-          START
+                ПАЧАЦЬ
         </button>
       </div>
     );
   }
 
-  // Экран с результатами
+    // Экран з вынікамі
   if (gameState === 'finished') {
     return (
       <div className="quiz-container result-screen">
-        <p className="congrats-text">CONGRATULATIONS!</p>
+            <p className="congrats-text">ВІНШУЕМ!</p>
         <div className="speech-bubble">
-          <h2 className="win-message">YOU WIN!</h2>
+                <h2 className="win-message">ВЫ ПЕРАМАГЛІ!</h2>
         </div>
         <div className="social-buttons">
           <button className="social-btn">👍</button>
@@ -59,19 +58,15 @@ const Quiz = () => {
           <button className="social-btn">➕</button>
         </div>
         <button className="start-btn" onClick={resetQuiz}>
-          PLAY AGAIN
+                ГУЛЯЦЬ ЗНОЎ
         </button>
       </div>
     );
   }
 
-  // Экран вопроса
+    // Экран пытання
   return (
-    <div className="quiz-container">
-      <div className="question-counter">
-        Вопрос {currentQuestionNumber} из {totalQuestions}
-      </div>
-      
+      <div className="quiz-container">
       <div className="speech-bubble">
         <h2>{currentQuestion.question}</h2>
       </div>
@@ -81,53 +76,29 @@ const Quiz = () => {
           type="text"
           value={userAnswer}
           onChange={handleInputChange}
-          placeholder="Введите ответ..."
+                  placeholder="Увядзіце адказ..."
           className="answer-input"
           disabled={isCorrect !== null}
         />
         
-        {isCorrect === null ? (
+              {isCorrect === null && (
           <div className="buttons">
             <button type="submit" className="submit-btn">
-              Проверить
-            </button>
-            {currentQuestion.hint && (
-              <button
-                type="button"
-                onClick={showQuestionHint}
-                className="hint-btn"
-                disabled={showHint}
-              >
-                Подсказка
-              </button>
-            )}
-          </div>
-        ) : (
-          <div className="buttons">
-            <button
-              type="button"
-              onClick={nextQuestion}
-              className="next-btn"
-            >
-              {isLastQuestion ? 'Finish' : 'Next question'}
+                          Праверыць
             </button>
           </div>
         )}
       </form>
 
-      {showHint && currentQuestion.hint && (
-        <div className="hint">
-          <p>Hint: {currentQuestion.hint}</p>
+          {showTryAgain && (
+              <div className="try-again">
+                  <p>Паспрабуй яшчэ!</p>
         </div>
       )}
 
-      {isCorrect !== null && (
-        <div className={`result ${isCorrect ? 'correct' : 'incorrect'}`}>
-          {isCorrect ? (
-            <p>Correct!</p>
-          ) : (
-            <p>Wrong. Correct answer: {currentQuestion.answer}</p>
-          )}
+          {isCorrect === true && (
+              <div className="result correct">
+                  <p>Правільна!</p>
         </div>
       )}
     </div>
