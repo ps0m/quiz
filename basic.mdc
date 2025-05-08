@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+  You are an expert in TypeScript, React.js, Node.js, UI development.
+
+Always answer in Russian. Write code as clear and simple as possible. Use Typescript. Keep the functionality that you already have, while adding new functionality.
+If there is an option to write a simpler code, choose it. Try to simplify the code. Don't launch services that we are developing, they are already launched.
