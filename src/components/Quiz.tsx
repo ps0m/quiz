@@ -13,7 +13,14 @@ const Quiz: React.FC = () => {
     resetQuiz,
     startQuiz,
     showTryAgain,
-      showTooltip
+      showTooltip,
+      showHintModal,
+      openHintModal,
+      closeHintModal,
+      currentHintTask,
+      markTaskAsSent,
+      hasUnlockedHint,
+      hintButtonText
   } = useQuiz();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -89,6 +96,9 @@ const Quiz: React.FC = () => {
             <button type="submit" className="submit-btn">
                           Праверыць
             </button>
+                      <button type="button" className="hint-btn" onClick={openHintModal}>
+                          {hintButtonText}
+                      </button>
           </div>
         )}
       </form>
@@ -104,6 +114,40 @@ const Quiz: React.FC = () => {
           <p>Правільна!</p>
         </div>
       )}
+
+          {showHintModal && (
+              <div className="modal-overlay">
+                  <div className="modal-content">
+                      <span className="close-icon" onClick={closeHintModal}>&times;</span>
+                      <div className="avatar-circle">
+                          <img src="/avatar.svg" alt="Avatar" className="avatar-image" />
+                      </div>
+                      <h3>Патрэбна падказка?</h3>
+                      <p>Каб атрымаць падказку, выканайце заданне і дашліце яго ў наш Telegram канал:</p>
+
+                      <div className="task-box">
+                          <h4>Заданне:</h4>
+                          <p>{currentHintTask}</p>
+                      </div>
+
+                      <a
+                          href="https://t.me/your_channel_name"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="tg-link"
+                      >
+                          Перайсці ў Telegram
+                      </a>
+
+                      <button
+                          className="sent-btn"
+                          onClick={markTaskAsSent}
+                      >
+                          Ужо адправіў
+                      </button>
+                  </div>
+              </div>
+          )}
     </div>
   );
 };

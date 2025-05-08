@@ -138,8 +138,7 @@
 .buttons {
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  margin-top: 0.5rem;
+  margin-top: 15px;
 }
 
 .hint {
@@ -231,16 +230,18 @@
 }
 
 .submit-btn {
-  background-color: black;
+  background-color: #007bff;
   color: white;
-  font-weight: 700;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .submit-btn:hover {
-  background-color: #222;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  background-color: #0069d9;
 }
 
 .next-btn {
@@ -256,19 +257,27 @@
 }
 
 .hint-btn {
-  background-color: transparent;
-  color: #000;
-  font-weight: 600;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 10px;
+}
+
+.hint-btn:hover {
+  background-color: #5a6268;
 }
 
 .result-screen {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 2rem;
-  height: 100%;
-  width: 100%;
+  align-items: center;
 }
 
 .congrats-text {
@@ -433,4 +442,154 @@
   40%, 60% {
     transform: translate3d(6px, 0, 0);
   }
+}
+
+/* Мадальнае акно для падказкі */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 80%;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: popIn 0.4s ease-out;
+}
+
+.close-icon {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.3s;
+  line-height: 0.8;
+}
+
+.close-icon:hover {
+  color: #333;
+}
+
+.avatar-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border: 4px solid #007bff;
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-content h3 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.modal-content p {
+  color: #555;
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.hint-question {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 15px 0;
+  border-left: 4px solid #007bff;
+}
+
+.tg-link {
+  display: inline-block;
+  background-color: #0088cc;
+  color: white;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  margin: 10px 0;
+  font-weight: bold;
+  transition: all 0.3s;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(0, 136, 204, 0.3);
+}
+
+.tg-link:hover {
+  background-color: #0077b5;
+  transform: translateY(-3px);
+  box-shadow: 0 7px 14px rgba(0, 136, 204, 0.4);
+}
+
+.task-box {
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  padding: 15px;
+  margin: 15px 0;
+  border-left: 4px solid #007bff;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task-box h4 {
+  margin-top: 0;
+  color: #007bff;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.task-box p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.sent-btn {
+  display: inline-block;
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  margin: 15px 0;
+  font-weight: bold;
+  transition: all 0.3s;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+  cursor: pointer;
+}
+
+.sent-btn:hover {
+  background-color: #218838;
+  transform: translateY(-3px);
+  box-shadow: 0 7px 14px rgba(40, 167, 69, 0.4);
 } 

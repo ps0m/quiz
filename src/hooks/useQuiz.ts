@@ -40,6 +40,19 @@ const questions: Question[] = [
   }
 ];
 
+// Заданні для падказак
+const hintTasks = [
+    "Прачытаць верш (мінімум 4 радкі)",
+    "Станцаваць пад любімую песню (мінімум 30 секунд)",
+    "Заспяваць куплет любімай песні жаночым голасам",
+    "Зрабіць 20 прысяданняў перад камерай",
+    "Зрабіць відэа з чытаннем скорагаворкі",
+    "Зрабіць відэа як ты робіш 10 адцісканняў ад падлогі",
+    "Станцаваць танец маленькіх лебедзяў",
+    "Паказаць пантамімай як чалавек ловіць рыбу",
+    "Апісаць свой сённяшні дзень наадварот (пачынаючы з канца)",
+];
+
 export function useQuiz() {
   const [gameState, setGameState] = useState<'start' | 'playing' | 'finished'>('start');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -48,6 +61,11 @@ export function useQuiz() {
   const [score, setScore] = useState(0);
   const [showTryAgain, setShowTryAgain] = useState(false);
     const [showTooltip, setShowTooltip] = useState(true);
+    const [showHintModal, setShowHintModal] = useState(false);
+    const [currentHintTask, setCurrentHintTask] = useState('');
+    const [tasksSent, setTasksSent] = useState<boolean[]>([]);
+    const [hintButtonText, setHintButtonText] = useState('Запытаць падказку');
+    const [hasUnlockedHint, setHasUnlockedHint] = useState(false);
 
   const currentQuestion = questions[currentQuestionIndex];
   const isLastQuestion = currentQuestionIndex === questions.length - 1;
@@ -55,6 +73,8 @@ export function useQuiz() {
   const startQuiz = () => {
     setGameState('playing');
       setShowTooltip(true);
+      // Ініцыялізуем масіў з пазнакамі выкананых заданняў
+      setTasksSent(Array(hintTasks.length).fill(false));
   };
 
   const checkAnswer = () => {
@@ -93,6 +113,12 @@ export function useQuiz() {
       setUserAnswer('');
         setIsCorrect(null);
         setShowTooltip(true);
+
+        // Скідваем стан падказак для новага пытання
+        setCurrentHintTask('');
+        setHintButtonText('Запытаць падказку');
+        setHasUnlockedHint(false);
+        setTasksSent(Array(hintTasks.length).fill(false));
     } else {
       setGameState('finished');
     }
@@ -106,7 +132,59 @@ export function useQuiz() {
     setScore(0);
     setShowTryAgain(false);
       setShowTooltip(true);
+        setShowHintModal(false);
+      setCurrentHintTask('');
+      setTasksSent(Array(hintTasks.length).fill(false));
+      setHintButtonText('Запытаць падказку');
+      setHasUnlockedHint(false);
   };
+
+    const openHintModal = () => {
+        // Калі заданне яшчэ не было выбрана або ўсе заданні выкананы
+        // (калі кнопка паказвае "Запытаць падказку" або "Запытаць яшчэ адну падказку")
+        if (!currentHintTask || hasUnlockedHint) {
+            // Знаходзім першае невыкананае заданне
+            const availableTasks = hintTasks.filter((_, index) => !tasksSent[index]);
+
+            if (availableTasks.length > 0) {
+                // Выбіраем выпадковае заданне з невыкананых
+                const randomIndex = Math.floor(Math.random() * availableTasks.length);
+                const taskIndex = hintTasks.indexOf(availableTasks[randomIndex]);
+
+                setCurrentHintTask(hintTasks[taskIndex]);
+                setHasUnlockedHint(false);
+
+                // Абнаўляем тэкст кнопкі
+                setHintButtonText('Запытаць падказку');
+            }
+        }
+
+        setShowHintModal(true);
+    };
+
+    const closeHintModal = () => {
+        setShowHintModal(false);
+  };
+
+    const markTaskAsSent = () => {
+        // Знаходзім індэкс бягучага задання
+        const taskIndex = hintTasks.indexOf(currentHintTask);
+
+        if (taskIndex !== -1) {
+            const newTasksSent = [...tasksSent];
+            newTasksSent[taskIndex] = true;
+            setTasksSent(newTasksSent);
+
+            // Абазначаем, што падказка разблакавана
+            setHasUnlockedHint(true);
+
+            // Абнаўляем тэкст кнопкі
+            setHintButtonText('Запытаць яшчэ адну падказку');
+
+            // Зачыняем мадальнае акно
+            closeHintModal();
+        }
+    };
 
   return {
     gameState,
@@ -123,6 +201,13 @@ export function useQuiz() {
     startQuiz,
     resetQuiz,
       showTryAgain,
-      showTooltip
+      showTooltip,
+      showHintModal,
+      openHintModal,
+      closeHintModal,
+      currentHintTask,
+      markTaskAsSent,
+      hasUnlockedHint,
+      hintButtonText
   };
 }
