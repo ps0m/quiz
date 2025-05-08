@@ -23,8 +23,8 @@ const Quiz: React.FC = () => {
       hintButtonText
   } = useQuiz();
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    const handleSubmit = (e?: FormEvent<HTMLFormElement>) => {
+        if (e) e.preventDefault();
     checkAnswer();
   };
 
@@ -70,48 +70,50 @@ const Quiz: React.FC = () => {
   // Экран пытання
   return (
     <div className="quiz-container">
-      <div className="speech-bubble">
-        <h2>{currentQuestion.question}</h2>
-      </div>
-
-          {showTooltip && (
-              <div className="tooltip">
-                  <p>Мова адказу: <strong>{currentQuestion.answerLanguage}</strong></p>
-                  <p>Колькасць слоў: <strong>{currentQuestion.wordCount}</strong></p>
+          <div className="content-area">
+              <div className="speech-bubble">
+                  <h2>{currentQuestion.question}</h2>
               </div>
-          )}
 
-      <form onSubmit={handleSubmit} className="answer-form">
-        <input
-          type="text"
-          value={userAnswer}
-          onChange={handleInputChange}
-          placeholder="Увядзіце адказ..."
-          className="answer-input"
-          disabled={isCorrect !== null}
-        />
+              {showTooltip && (
+                  <div className="tooltip">
+                      <p>Мова адказу: <strong>{currentQuestion.answerLanguage}</strong></p>
+                      <p>Колькасць слоў: <strong>{currentQuestion.wordCount}</strong></p>
+                  </div>
+              )}
 
-        {isCorrect === null && (
-          <div className="buttons">
-            <button type="submit" className="submit-btn">
-                          Праверыць
-            </button>
-                      <button type="button" className="hint-btn" onClick={openHintModal}>
-                          {hintButtonText}
-                      </button>
+              <form onSubmit={handleSubmit} className="answer-form">
+                  <input
+                      type="text"
+                      value={userAnswer}
+                      onChange={handleInputChange}
+                      placeholder="Увядзіце адказ..."
+                      className="answer-input"
+                      disabled={isCorrect !== null}
+                  />
+              </form>
+
+              {showTryAgain && (
+                  <div className="try-again">
+                      <p>Паспрабуй яшчэ!</p>
+                  </div>
+              )}
+
+              {isCorrect === true && (
+                  <div className="result correct">
+                      <p>Правільна!</p>
+                  </div>
+              )}
           </div>
-        )}
-      </form>
 
-      {showTryAgain && (
-        <div className="try-again">
-          <p>Паспрабуй яшчэ!</p>
-        </div>
-      )}
-
-      {isCorrect === true && (
-        <div className="result correct">
-          <p>Правільна!</p>
+          {isCorrect === null && (
+              <div className="bottom-buttons">
+                  <button type="button" onClick={() => handleSubmit()} className="submit-btn">
+                      Праверыць
+                  </button>
+                  <button type="button" className="hint-btn" onClick={openHintModal}>
+                      {hintButtonText}
+                  </button>
         </div>
       )}
 

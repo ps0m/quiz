@@ -2,8 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  gap: 2rem;
+  justify-content: space-between;
   width: 100%;
   height: 100%;
   position: relative;
@@ -11,6 +10,27 @@
   animation: fadeIn 0.5s ease-out;
   overflow-y: auto;
   padding: 0.5rem;
+}
+
+.content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  overflow-y: auto;
+  padding-bottom: 1rem;
+}
+
+.bottom-buttons {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  margin-top: 1rem;
 }
 
 .speech-bubble {
@@ -118,11 +138,8 @@
 }
 
 .answer-form {
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  gap: clamp(0.8rem, 2vh, 1.5rem);
-  animation: fadeIn 0.5s ease-out;
+  margin-bottom: 1rem;
 }
 
 .answer-input {
@@ -233,15 +250,19 @@
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
+  padding: 12px 30px;
+  border-radius: 25px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
 }
 
 .submit-btn:hover {
   background-color: #0069d9;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
 }
 
 .next-btn {
@@ -260,16 +281,19 @@
   background-color: #6c757d;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
+  padding: 12px 30px;
+  border-radius: 25px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  margin-left: 10px;
+  transition: all 0.3s;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(108, 117, 125, 0.3);
 }
 
 .hint-btn:hover {
   background-color: #5a6268;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(108, 117, 125, 0.4);
 }
 
 .result-screen {
@@ -327,7 +351,7 @@
     opacity: 0;
   }
   70% {
-    transform: scale(1.05);
+    transform: scale(1.01);
   }
   100% {
     transform: scale(1);
@@ -393,7 +417,7 @@
   border-radius: clamp(12px, 3vw, 16px);
   padding: clamp(0.6rem, 2vw, 0.8rem) clamp(0.8rem, 3vw, 1.2rem);
   font-size: clamp(0.8rem, 2vw, 0.9rem);
-  margin-top: 0.5rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
   border: 2px solid #000;
   width: calc(100% - 2rem);
