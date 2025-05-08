@@ -77,8 +77,8 @@ const Quiz: React.FC = () => {
 
               {showTooltip && (
                   <div className="tooltip">
-                      <p>Мова адказу: <strong>{currentQuestion.answerLanguage}</strong></p>
-                      <p>Колькасць слоў: <strong>{currentQuestion.wordCount}</strong></p>
+                      <p>Мова адказу: {currentQuestion.answerLanguage}</p>
+                      <p>Колькасць слоў: {currentQuestion.wordCount}</p>
                   </div>
               )}
 
@@ -125,7 +125,7 @@ const Quiz: React.FC = () => {
                           <img src="/avatar.svg" alt="Avatar" className="avatar-image" />
                       </div>
                       <h3>Патрэбна падказка?</h3>
-                      <p>Каб атрымаць падказку, выканайце заданне і дашліце яго ў наш Telegram канал:</p>
+                      <p>Каб атрымаць падказку, выканай заданне і дашлі яго майстрам YODA:</p>
 
                       <div className="task-box">
                           <h4>Заданне:</h4>
