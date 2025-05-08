@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, ChangeEvent } from 'react';
+import React, { FormEvent, ChangeEvent } from 'react';
 import { useQuiz } from '../hooks/useQuiz';
 import './Quiz.css';
 
@@ -7,17 +7,12 @@ const Quiz: React.FC = () => {
     gameState,
     currentQuestion,
     userAnswer,
-      setUserAnswer,
+    setUserAnswer,
     isCorrect,
     checkAnswer,
-    nextQuestion,
-    isLastQuestion,
-    totalQuestions,
-    currentQuestionNumber,
-    score,
+    resetQuiz,
     startQuiz,
-      resetQuiz,
-      showTryAgain
+    showTryAgain,
   } = useQuiz();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -29,12 +24,12 @@ const Quiz: React.FC = () => {
     setUserAnswer(e.target.value);
   };
 
-    // Пачатковы экран
+  // Пачатковы экран
   if (gameState === 'start') {
     return (
       <div className="quiz-container">
         <div className="speech-bubble">
-                <h1 className="quiz-title">Віктарына</h1>
+          <h1 className="quiz-title">Віктарына</h1>
         </div>
         <button className="start-btn" onClick={startQuiz}>
                 ПАЧАЦЬ
@@ -43,13 +38,13 @@ const Quiz: React.FC = () => {
     );
   }
 
-    // Экран з вынікамі
+  // Экран з вынікамі
   if (gameState === 'finished') {
     return (
       <div className="quiz-container result-screen">
-            <p className="congrats-text">ВІНШУЕМ!</p>
+        <p className="congrats-text">ВІНШУЕМ!</p>
         <div className="speech-bubble">
-                <h2 className="win-message">ВЫ ПЕРАМАГЛІ!</h2>
+          <h2 className="win-message">ВЫ ПЕРАМАГЛІ!</h2>
         </div>
         <div className="social-buttons">
           <button className="social-btn">👍</button>
@@ -64,9 +59,9 @@ const Quiz: React.FC = () => {
     );
   }
 
-    // Экран пытання
+  // Экран пытання
   return (
-      <div className="quiz-container">
+    <div className="quiz-container">
       <div className="speech-bubble">
         <h2>{currentQuestion.question}</h2>
       </div>
@@ -76,12 +71,12 @@ const Quiz: React.FC = () => {
           type="text"
           value={userAnswer}
           onChange={handleInputChange}
-                  placeholder="Увядзіце адказ..."
+          placeholder="Увядзіце адказ..."
           className="answer-input"
           disabled={isCorrect !== null}
         />
-        
-              {isCorrect === null && (
+
+        {isCorrect === null && (
           <div className="buttons">
             <button type="submit" className="submit-btn">
                           Праверыць
@@ -90,19 +85,19 @@ const Quiz: React.FC = () => {
         )}
       </form>
 
-          {showTryAgain && (
-              <div className="try-again">
-                  <p>Паспрабуй яшчэ!</p>
+      {showTryAgain && (
+        <div className="try-again">
+          <p>Паспрабуй яшчэ!</p>
         </div>
       )}
 
-          {isCorrect === true && (
-              <div className="result correct">
-                  <p>Правільна!</p>
+      {isCorrect === true && (
+        <div className="result correct">
+          <p>Правільна!</p>
         </div>
       )}
     </div>
   );
 };
 
-export default Quiz; 
+export default Quiz;

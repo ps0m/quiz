@@ -5,28 +5,28 @@ import { Question } from '../types';
 const questions: Question[] = [
   {
     id: 1,
-        question: 'Калі Хрыстафор Калумб адкрыў Амерыку?',
-        answer: '1492'
+    question: 'Калі Хрыстафор Калумб адкрыў Амерыку?',
+    answer: '1492',
   },
   {
     id: 2,
-      question: 'Якая планета вядомая як Чырвоная Планета?',
-      answer: 'Марс'
+    question: 'Якая планета вядомая як Чырвоная Планета?',
+    answer: 'Марс',
   },
   {
     id: 3,
-      question: 'Хто намаляваў Мона Лізу?',
-      answer: 'Леанарда да Вінчы'
-  }
+    question: 'Хто намаляваў Мона Лізу?',
+    answer: 'Леанарда да Вінчы',
+  },
 ];
 
 export function useQuiz() {
   const [gameState, setGameState] = useState<'start' | 'playing' | 'finished'>('start');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [userAnswer, setUserAnswer] = useState('');
+  const [userAnswer, setUserAnswer] = useState('');
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [score, setScore] = useState(0);
-    const [showTryAgain, setShowTryAgain] = useState(false);
+  const [showTryAgain, setShowTryAgain] = useState(false);
 
   const currentQuestion = questions[currentQuestionIndex];
   const isLastQuestion = currentQuestionIndex === questions.length - 1;
@@ -36,38 +36,38 @@ export function useQuiz() {
   };
 
   const checkAnswer = () => {
-      const correct = userAnswer.trim().toLowerCase() === currentQuestion.answer.toLowerCase();
-    
+    const correct = userAnswer.trim().toLowerCase() === currentQuestion.answer.toLowerCase();
+
     if (correct) {
-        setIsCorrect(true);
-      setScore(prev => prev + 1);
+      setIsCorrect(true);
+      setScore((prev) => prev + 1);
 
-        // Калі адказ правільны, то пераходзім далей
-        setTimeout(() => {
-            if (isLastQuestion) {
-                setGameState('finished');
-            } else {
-                nextQuestion();
-            }
-        }, 1500);
+      // Калі адказ правільны, то пераходзім далей
+      setTimeout(() => {
+        if (isLastQuestion) {
+          setGameState('finished');
+        } else {
+          nextQuestion();
+        }
+      }, 1500);
     } else {
-        // Калі адказ няправільны, то паказваем "Паспрабуй яшчэ" з анімацыяй
-        setShowTryAgain(true);
-        setUserAnswer('');
+      // Калі адказ няправільны, то паказваем "Паспрабуй яшчэ" з анімацыяй
+      setShowTryAgain(true);
+      setUserAnswer('');
 
-        // Схаваем паведамленне "Паспрабуй яшчэ" праз 2 секунды
-        setTimeout(() => {
-            setShowTryAgain(false);
-        }, 2000);
+      // Схаваем паведамленне "Паспрабуй яшчэ" праз 2 секунды
+      setTimeout(() => {
+        setShowTryAgain(false);
+      }, 2000);
     }
-    
+
     return correct;
   };
 
   const nextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex((prev: number) => prev + 1);
-        setUserAnswer('');
+      setUserAnswer('');
       setIsCorrect(null);
     } else {
       setGameState('finished');
@@ -77,17 +77,17 @@ export function useQuiz() {
   const resetQuiz = () => {
     setGameState('start');
     setCurrentQuestionIndex(0);
-      setUserAnswer('');
+    setUserAnswer('');
     setIsCorrect(null);
     setScore(0);
-      setShowTryAgain(false);
+    setShowTryAgain(false);
   };
 
   return {
     gameState,
     currentQuestion,
     userAnswer,
-      setUserAnswer,
+    setUserAnswer,
     isCorrect,
     checkAnswer,
     nextQuestion,
@@ -96,7 +96,7 @@ export function useQuiz() {
     currentQuestionNumber: currentQuestionIndex + 1,
     score,
     startQuiz,
-      resetQuiz,
-      showTryAgain
+    resetQuiz,
+    showTryAgain,
   };
-} 
+}

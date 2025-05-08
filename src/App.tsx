@@ -4,7 +4,7 @@ import Quiz from './components/Quiz';
 
 function App() {
   return (
-      <div className="app">
+    <div className="app">
       <div className="phone-frame">
         <div className="dots-pattern"></div>
         <Quiz />
@@ -13,4 +13,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;
