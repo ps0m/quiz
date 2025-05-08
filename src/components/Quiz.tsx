@@ -28,9 +28,9 @@ const Quiz: React.FC = () => {
   // Пачатковы экран
   if (gameState === 'start') {
     return (
-      <div className="quiz-container">
-        <div className="speech-bubble">
-          <h1 className="quiz-title">Віктарына</h1>
+        <div className="start-container">
+            <div className="speech-bubble start-bubble">
+                <h1 className="quiz-title start-title">Віктарына</h1>
         </div>
         <button className="start-btn" onClick={startQuiz}>
                 ПАЧАЦЬ
