@@ -240,7 +240,7 @@
 }
 
 .start-title {
-  font-size: var(--font-large);
+  font-size: 60px;
   margin-bottom: 1rem;
 }
 
@@ -642,4 +642,42 @@
   background-color: #218838;
   transform: translateY(-3px);
   box-shadow: 0 7px 14px rgba(40, 167, 69, 0.4);
+}
+
+/* Тэматычныя фоны */
+.quiz-container {
+  position: relative;
+}
+
+.theme-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  opacity: 0.15;
+  z-index: -1;
+  transition: background-image 0.5s ease-out;
+}
+
+.theme-latin_america {
+  background-image: url('/backgrounds/latin_america.jpg');
+}
+
+.theme-dota {
+  background-image: url('/backgrounds/dota.jpg');
+}
+
+.theme-history {
+  background-image: url('/backgrounds/history.jpg');
+}
+
+.theme-belarus {
+  background-image: url('/backgrounds/belarus.jpg');
+}
+
+.theme-sport {
+  background-image: url('/backgrounds/sport.webp');
 } 

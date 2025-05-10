@@ -9,4 +9,5 @@ export interface Question {
   answer: string;
     answerLanguage: string;
     wordCount: number;
+    theme: string; // 'football', 'dota', 'history', 'geography' і г.д.
 }

@@ -70,6 +70,7 @@ const Quiz: React.FC = () => {
   // Экран пытання
   return (
     <div className="quiz-container">
+          <div className={`theme-background theme-${currentQuestion.theme}`}></div>
           <div className="content-area">
               <div className="speech-bubble">
                   <h2>{currentQuestion.question}</h2>
@@ -88,8 +89,8 @@ const Quiz: React.FC = () => {
 
               {showTooltip && (
                   <div className="tooltip">
-                      <p>Мова адказу: {currentQuestion.answerLanguage}</p>
-                      <p>Колькасць слоў: {currentQuestion.wordCount}</p>
+                      <p>Мова адказу: <strong>{currentQuestion.answerLanguage}</strong></p>
+                      <p>Колькасць слоў: <strong>{currentQuestion.wordCount}</strong></p>
                   </div>
               )}
 
