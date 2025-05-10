@@ -1,4 +1,4 @@
-import React, { FormEvent, ChangeEvent } from 'react';
+import React, { FormEvent, ChangeEvent, useState } from 'react';
 import { useQuiz } from '../hooks/useQuiz';
 import './Quiz.css';
 
@@ -22,6 +22,8 @@ const Quiz: React.FC = () => {
       hasUnlockedHint,
       hintButtonText
   } = useQuiz();
+
+    const [showGiftLink, setShowGiftLink] = useState(false);
 
     const handleSubmit = (e?: FormEvent<HTMLFormElement>) => {
         if (e) e.preventDefault();
@@ -47,22 +49,30 @@ const Quiz: React.FC = () => {
   }
 
   // Экран з вынікамі
-  if (gameState === 'finished') {
+    if (true) {
     return (
       <div className="quiz-container result-screen">
+            <div className="victory-image">
+                <img src="/victory.jpg" alt="Перамога!" />
+            </div>
         <p className="congrats-text">ВІНШУЕМ!</p>
         <div className="speech-bubble">
           <h2 className="win-message">ВЫ ПЕРАМАГЛІ!</h2>
         </div>
-        <div className="social-buttons">
-          <button className="social-btn">👍</button>
-          <button className="social-btn">💬</button>
-          <button className="social-btn">➖</button>
-          <button className="social-btn">➕</button>
-        </div>
-        <button className="start-btn" onClick={resetQuiz}>
-                ГУЛЯЦЬ ЗНОЎ
-        </button>
+            <div className="bottom-gift-block">
+                {!showGiftLink && (
+                    <button className="start-btn" onClick={() => setShowGiftLink(true)}>
+                        Забраць падарунак
+                    </button>
+                )}
+                {showGiftLink && (
+                    <div className="tooltip gift-tooltip">
+                        <a href="https://your-gift-link.com" target="_blank" rel="noopener noreferrer">
+                            Вось ваш падарунак!
+                        </a>
+                    </div>
+                )}
+            </div>
       </div>
     );
   }
@@ -125,7 +135,7 @@ const Quiz: React.FC = () => {
                       <div className="avatar-circle">
                           <img src="/avatar.svg" alt="Avatar" className="avatar-image" />
                       </div>
-                      <h3>Патрэбна падказка?</h3>
+                      <h3>Патрэбная падказка?</h3>
                       <p>Каб атрымаць падказку, выканай заданне і дашлі яго майстрам YODA:</p>
 
                       <div className="task-box">
