@@ -38,26 +38,32 @@ const Quiz: React.FC = () => {
   if (gameState === 'start') {
     return (
         <div className="start-container">
+            <div className="intro-image-block">
+                <img src="/intro.png" alt="Intro" className="intro-image" />
+            </div>
             <div className="speech-bubble start-bubble">
                 <h1 className="quiz-title start-title">Віктарына</h1>
-        </div>
-        <button className="start-btn" onClick={startQuiz}>
+            </div>
+            <button className="start-btn" onClick={startQuiz}>
                 ПАЧАЦЬ
-        </button>
-      </div>
+            </button>
+            <div className="start-gift-message">
+                Вадзя, дзякуй табе за падарункі, мы вырашылі табе таксама зрабіць падарунак, але так проста не аддамо, паспрабуй забраць😁😁😁
+            </div>
+        </div>
     );
   }
 
   // Экран з вынікамі
-    if (true) {
+    if (gameState === 'finished') {
     return (
       <div className="quiz-container result-screen">
             <div className="victory-image">
-                <img src="/victory.jpg" alt="Перамога!" />
+                <img src="/winner.png" alt="Перамога!" />
             </div>
         <p className="congrats-text">ВІНШУЕМ!</p>
         <div className="speech-bubble">
-          <h2 className="win-message">ВЫ ПЕРАМАГЛІ!</h2>
+                <h2 className="win-message">ТЫ ПРАЙШОЎ НАШ QUIZ!</h2>
         </div>
             <div className="bottom-gift-block">
                 {!showGiftLink && (
@@ -68,7 +74,7 @@ const Quiz: React.FC = () => {
                 {showGiftLink && (
                     <div className="tooltip gift-tooltip">
                         <a href="https://your-gift-link.com" target="_blank" rel="noopener noreferrer">
-                            Вось ваш падарунак!
+                            Вось ён, клікай!
                         </a>
                     </div>
                 )}
@@ -133,7 +139,7 @@ const Quiz: React.FC = () => {
                   <div className="modal-content">
                       <span className="close-icon" onClick={closeHintModal}>&times;</span>
                       <div className="avatar-circle">
-                          <img src="/avatar.svg" alt="Avatar" className="avatar-image" />
+                          <img src="/help.png" alt="Avatar" className="avatar-image" />
                       </div>
                       <h3>Патрэбная падказка?</h3>
                       <p>Каб атрымаць падказку, выканай заданне і дашлі яго майстрам YODA:</p>
@@ -149,7 +155,7 @@ const Quiz: React.FC = () => {
                           rel="noopener noreferrer"
                           className="tg-link"
                       >
-                          Перайсці ў Telegram
+                          Запытаць у майстроў YODA
                       </a>
 
                       <button
