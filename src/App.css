@@ -15,10 +15,9 @@
 .phone-frame {
   background-color: #ffda3a;
   border-radius: 30px;
-  padding: 2rem;
+  padding: 1rem;
   width: 100%;
   max-width: 600px;
-  height: calc(100vh - 60px);
   position: relative;
   display: flex;
   flex-direction: column;
