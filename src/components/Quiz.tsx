@@ -1,6 +1,9 @@
 import React, { FormEvent, ChangeEvent, useState } from 'react';
 import { useQuiz } from '../hooks/useQuiz';
 import './Quiz.css';
+import introImg from '../assets/intro.png';
+import winnerImg from '../assets/winner.png';
+import helpImg from '../assets/help.png';
 
 const Quiz: React.FC = () => {
   const {
@@ -39,7 +42,7 @@ const Quiz: React.FC = () => {
     return (
         <div className="start-container">
             <div className="intro-image-block">
-                <img src="/intro.png" alt="Intro" className="intro-image" />
+                <img src={introImg} alt="Intro" className="intro-image" />
             </div>
             <div className="speech-bubble start-bubble">
                 <h1 className="quiz-title start-title">Віктарына</h1>
@@ -59,7 +62,7 @@ const Quiz: React.FC = () => {
     return (
       <div className="quiz-container result-screen">
             <div className="victory-image">
-                <img src="/winner.png" alt="Перамога!" />
+                <img src={winnerImg} alt="Перамога!" />
             </div>
         <p className="congrats-text">ВІНШУЕМ!</p>
         <div className="speech-bubble">
@@ -139,7 +142,7 @@ const Quiz: React.FC = () => {
                   <div className="modal-content">
                       <span className="close-icon" onClick={closeHintModal}>&times;</span>
                       <div className="avatar-circle">
-                          <img src="/help.png" alt="Avatar" className="avatar-image" />
+                          <img src={helpImg} alt="Avatar" className="avatar-image" />
                       </div>
                       <h3>Патрэбная падказка?</h3>
                       <p>Каб атрымаць падказку, выканай заданне і дашлі яго майстрам YODA:</p>

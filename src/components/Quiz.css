@@ -678,27 +678,27 @@
 }
 
 .theme-latin_america {
-  background-image: url('/backgrounds/latin_america.jpg');
+  background-image: url('../assets/backgrounds/latin_america.jpg');
 }
 
 .theme-dota {
-  background-image: url('/backgrounds/dota.jpg');
+  background-image: url('../assets/backgrounds/dota.jpg');
 }
 
 .theme-history {
-  background-image: url('/backgrounds/history.jpg');
+  background-image: url('../assets/backgrounds/history.jpg');
 }
 
 .theme-belarus {
-  background-image: url('/backgrounds/belarus.jpg');
+  background-image: url('../assets/backgrounds/belarus.jpg');
 }
 
 .theme-sport {
-  background-image: url('/backgrounds/sport.webp');
+  background-image: url('../assets/backgrounds/sport.webp');
 }
 
 .theme-cipher {
-  background-image: url('/backgrounds/cipher.jpeg');
+  background-image: url('../assets/backgrounds/cipher.jpeg');
 }
 
 .bottom-gift-block {
