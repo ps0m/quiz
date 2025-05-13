@@ -1,4 +1,4 @@
-import React, { FormEvent, ChangeEvent, useState } from 'react';
+import React, { FormEvent, ChangeEvent, useState, useEffect, useRef } from 'react';
 import { useQuiz } from '../hooks/useQuiz';
 import './Quiz.css';
 import introImg from '../assets/intro.png';
@@ -27,6 +27,13 @@ const Quiz: React.FC = () => {
   } = useQuiz();
 
     const [showGiftLink, setShowGiftLink] = useState(false);
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        if (gameState === 'playing' && isCorrect === null && inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, [gameState, isCorrect, currentQuestion]);
 
     const handleSubmit = (e?: FormEvent<HTMLFormElement>) => {
         if (e) e.preventDefault();
@@ -97,12 +104,14 @@ const Quiz: React.FC = () => {
 
               <form onSubmit={handleSubmit} className="answer-form">
                   <input
+                      ref={inputRef}
                       type="text"
                       value={userAnswer}
                       onChange={handleInputChange}
                       placeholder="Увядзіце адказ..."
                       className="answer-input"
                       disabled={isCorrect !== null}
+                      autoFocus
                   />
               </form>
 
