@@ -83,7 +83,7 @@ const Quiz: React.FC = () => {
                 )}
                 {showGiftLink && (
                     <div className="tooltip gift-tooltip">
-                        <a href="https://your-gift-link.com" target="_blank" rel="noopener noreferrer">
+                        <a href={import.meta.env.VITE_GIFT_LINK || "https://default-gift-link.com"} target="_blank" rel="noopener noreferrer">
                             Вось ён, клікай!
                         </a>
                     </div>
@@ -162,7 +162,7 @@ const Quiz: React.FC = () => {
                       </div>
 
                       <a
-                          href="https://t.me/your_channel_name"
+                          href={import.meta.env.VITE_TELEGRAM_CHANNEL || "https://t.me/default_channel"}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="tg-link"
