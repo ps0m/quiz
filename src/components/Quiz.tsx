@@ -118,7 +118,7 @@ const Quiz: React.FC = () => {
           />
         </form>
 
-        {showTooltip && (
+        {showTooltip && !(showTryAgain || isCorrect) && (
           <div className="tooltip">
             <p>Мова адказу: <strong>{currentQuestion.answerLanguage}</strong></p>
             <p>Колькасць слоў: <strong>{currentQuestion.wordCount}</strong></p>
