@@ -58,6 +58,9 @@
 }
 
 @media (max-width: 660px) {
+  .app {
+    padding: 1rem 0;
+  }
   .phone-frame {
     width: calc(100% - 30px);
     padding: 1.5rem;
